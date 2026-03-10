@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Демо иллюминации парка</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div>
+        <h1>Демо иллюминации парка</h1>
+        <p class="subtitle">Опишите тему, и страница изменится под неё.</p>
+      </div>
+      <div class="current-theme">
+        <span class="label">Текущая тема:</span>
+        <span id="current-theme-name">ещё не выбрана</span>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <section class="hero" id="hero">
+        <div class="hero-overlay">
+          <h2 id="hero-title">Ваш парк ночью</h2>
+          <p id="hero-description">
+            Это демонстрация подсветки парка. Введите описание темы ниже, чтобы изменить атмосферу и свет.
+          </p>
+        </div>
+      </section>
+
+      <section class="cards">
+        <div class="card">
+          <h3>Главная площадь</h3>
+          <p>
+            Центральная зона парка. Цвета и свечение имитируют основную сцену.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Зона у озера</h3>
+          <p>
+            Вода, лес, огонь, будущее — смотрите, как тема меняет это пространство.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Прогулочная дорожка</h3>
+          <p>
+            Подсветка дорожек и атмосфера показывают, как гости ощущают выбранную тему.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <div class="chat-container">
+        <div class="chat-history" id="chat-history"></div>
+        <form id="prompt-form" class="prompt-form">
+          <input
+            id="prompt-input"
+            class="prompt-input"
+            type="text"
+            placeholder="Например: Сделай парк как спокойный океан ночью..."
+            autocomplete="off"
+          />
+          <button type="submit" class="prompt-button">Применить тему</button>
+        </form>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+

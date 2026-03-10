@@ -1,0 +1,466 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@500;700&family=Space+Grotesk:wght@400;600&family=Pacifico&display=swap");
+
+:root {
+  /* Neutral default palette (until LLM theme is applied) */
+  --bg-color: #0b0b0b;
+  --primary-color: #d4d4d4;
+  --accent-color: #f5f5f5;
+  --text-on-bg: #e5e5e5;
+  --card-bg: rgba(32, 32, 32, 0.95);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-on-bg);
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color);
+  transition: background-color 400ms ease;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--primary-color) 35%, transparent);
+  backdrop-filter: blur(10px);
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--bg-color) 88%, var(--primary-color) 12%),
+    color-mix(in srgb, var(--bg-color) 94%, var(--primary-color) 6%)
+  );
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.subtitle {
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+  color: color-mix(in srgb, var(--text-on-bg) 80%, transparent);
+}
+
+.current-theme {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 0.85rem;
+}
+
+.current-theme .label {
+  color: color-mix(in srgb, var(--text-on-bg) 55%, transparent);
+}
+
+#current-theme-name {
+  margin-top: 0.25rem;
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem 1.75rem 0.75rem;
+}
+
+/* Hero section */
+
+.hero {
+  position: relative;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  min-height: 260px;
+  background-color: var(--bg-color);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 24px 60px color-mix(in srgb, var(--bg-color) 80%, black 20%);
+  transition: background-image 400ms ease, box-shadow 400ms ease;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--primary-color) 45%, transparent), transparent 55%),
+    radial-gradient(circle at 80% 120%, color-mix(in srgb, var(--accent-color) 30%, transparent), transparent 60%);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 1;
+  padding: 2.25rem;
+  background-image: linear-gradient(
+    to top right,
+    color-mix(in srgb, var(--bg-color) 92%, black 8%),
+    color-mix(in srgb, var(--bg-color) 70%, var(--primary-color) 30%),
+    color-mix(in srgb, var(--bg-color) 40%, var(--primary-color) 60%)
+  );
+  color: var(--text-on-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hero-overlay h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.hero-overlay p {
+  margin: 0;
+  max-width: 40rem;
+  line-height: 1.5;
+}
+
+/* Cards */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: 1rem;
+  padding: 1.1rem 1.2rem;
+  box-shadow: 0 18px 40px color-mix(in srgb, var(--bg-color) 88%, black 12%);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 35%, transparent);
+  transition:
+    background-color 300ms ease,
+    border-color 300ms ease,
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.card h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+  color: var(--primary-color);
+}
+
+.card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: color-mix(in srgb, var(--text-on-bg) 90%, transparent);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 26px 60px color-mix(in srgb, var(--bg-color) 80%, black 20%);
+  border-color: color-mix(in srgb, var(--accent-color) 70%, transparent);
+}
+
+/* Footer / chat */
+
+.app-footer {
+  padding: 0.75rem 1.75rem 1.25rem;
+  border-top: 1px solid color-mix(in srgb, var(--primary-color) 35%, transparent);
+  background: radial-gradient(
+    circle at top,
+    color-mix(in srgb, var(--primary-color) 40%, var(--bg-color) 60%),
+    color-mix(in srgb, var(--bg-color) 94%, black 6%)
+  );
+  backdrop-filter: blur(16px);
+}
+
+.chat-container {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.chat-history {
+  max-height: 140px;
+  overflow-y: auto;
+  padding: 0.5rem 0.4rem;
+  font-size: 0.85rem;
+  color: color-mix(in srgb, var(--text-on-bg) 88%, transparent);
+}
+
+.chat-message {
+  margin-bottom: 0.25rem;
+}
+
+.chat-message span.role {
+  font-weight: 600;
+  margin-right: 0.35rem;
+  color: var(--accent-color);
+}
+
+.prompt-form {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.prompt-input {
+  flex: 1;
+  padding: 0.75rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--primary-color) 55%, transparent);
+  background-color: color-mix(in srgb, var(--bg-color) 90%, black 10%);
+  color: var(--text-on-bg);
+  outline: none;
+  font-size: 0.95rem;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.9);
+}
+
+.prompt-input::placeholder {
+  color: color-mix(in srgb, var(--text-on-bg) 55%, transparent);
+}
+
+.prompt-input:focus {
+  border-color: var(--primary-color);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--primary-color) 70%, transparent),
+    0 18px 40px color-mix(in srgb, var(--bg-color) 80%, black 20%);
+}
+
+.prompt-button {
+  padding: 0.7rem 1.3rem;
+  border-radius: 999px;
+  border: none;
+  background: radial-gradient(circle at top left, var(--primary-color), var(--accent-color));
+  color: var(--bg-color);
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 16px 40px color-mix(in srgb, var(--bg-color) 80%, black 20%);
+  transition:
+    transform 120ms ease,
+    box-shadow 120ms ease,
+    filter 120ms ease;
+}
+
+.prompt-button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 20px 50px color-mix(in srgb, var(--bg-color) 80%, black 20%);
+}
+
+.prompt-button:active {
+  transform: translateY(0);
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--bg-color) 80%, black 20%);
+}
+
+/* --------- TYPOGRAPHY VARIANTS (controlled by JS classes) ---------- */
+
+body.font-system {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body.font-serif {
+  font-family: "Playfair Display", "Times New Roman", serif;
+}
+
+body.font-tech {
+  font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.02em;
+}
+
+body.font-playful {
+  font-family: "Pacifico", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* --------- SHAPE / ROUNDNESS VARIANTS ---------- */
+
+.roundness-square .card,
+.roundness-square .prompt-input,
+.roundness-square .prompt-button,
+.roundness-square .hero {
+  border-radius: 0.4rem;
+}
+
+.roundness-medium .card,
+.roundness-medium .prompt-input,
+.roundness-medium .prompt-button,
+.roundness-medium .hero {
+  border-radius: 0.9rem;
+}
+
+.roundness-rounded .card,
+.roundness-rounded .prompt-input,
+.roundness-rounded .prompt-button,
+.roundness-rounded .hero {
+  border-radius: 1.6rem;
+}
+
+/* --------- HOVER EFFECT VARIANTS ---------- */
+
+/* Glow */
+.hover-glow-soft .card:hover,
+.hover-glow-soft .prompt-button:hover {
+  box-shadow: 0 0 24px color-mix(in srgb, var(--accent-color) 45%, transparent);
+}
+
+.hover-glow-medium .card:hover,
+.hover-glow-medium .prompt-button:hover {
+  box-shadow: 0 0 28px color-mix(in srgb, var(--accent-color) 65%, transparent);
+}
+
+.hover-glow-strong .card:hover,
+.hover-glow-strong .prompt-button:hover {
+  box-shadow: 0 0 34px color-mix(in srgb, var(--accent-color) 85%, transparent);
+  filter: brightness(1.1);
+}
+
+/* Pulse (slight scale) */
+.hover-pulse-soft .card:hover,
+.hover-pulse-soft .prompt-button:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.hover-pulse-strong .card:hover,
+.hover-pulse-strong .prompt-button:hover {
+  transform: translateY(-3px) scale(1.05);
+}
+
+/* --------- GLOBAL ANIMATIONS ---------- */
+
+@keyframes wave-motion {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes wave-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes flicker-light {
+  0% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0.85;
+  }
+  25% {
+    opacity: 0.55;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.9;
+  }
+  72% {
+    opacity: 0.6;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes breathing-light {
+  0% {
+    box-shadow: 0 0 10px color-mix(in srgb, var(--primary-color) 40%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 26px color-mix(in srgb, var(--accent-color) 70%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 10px color-mix(in srgb, var(--primary-color) 40%, transparent);
+  }
+}
+
+/* Wave on hero */
+.anim-wave-hero .hero {
+  animation: wave-motion 6s ease-in-out infinite;
+}
+
+/* Wave on cards */
+.anim-wave-cards .card {
+  animation: wave-motion 7s ease-in-out infinite;
+}
+
+/* Wave on whole page (slight) */
+.anim-wave-page .app {
+  animation: wave-motion 10s ease-in-out infinite;
+}
+
+/* Flicker on hero (volcano / fire / electricity) */
+.anim-flicker-hero .hero {
+  animation: flicker-light 4s linear infinite;
+}
+
+/* Flicker on cards */
+.anim-flicker-cards .card {
+  animation: flicker-light 4.5s linear infinite;
+}
+
+/* Breathing on hero */
+.anim-breathing-hero .hero {
+  animation: breathing-light 7s ease-in-out infinite;
+}
+
+/* Breathing on cards */
+.anim-breathing-cards .card {
+  animation: breathing-light 8s ease-in-out infinite;
+}
+
+/* Breathing on whole page */
+.anim-breathing-page .app {
+  animation: breathing-light 10s ease-in-out infinite;
+}
+
+@media (max-width: 900px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-overlay {
+    padding: 1.6rem;
+  }
+
+  .app-main {
+    padding-inline: 1.25rem;
+  }
+
+  .app-header,
+  .app-footer {
+    padding-inline: 1.25rem;
+  }
+}
+
